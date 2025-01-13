@@ -6,7 +6,7 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 14:20:48 by sakitaha          #+#    #+#             */
-/*   Updated: 2025/01/13 20:05:28 by sakitaha         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:45:58 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int main(int argc, const char *argv[]) {
     return 1;
   }
   ScalarConverter::convert(std::string(argv[1]));
+  std::cout << "\n";
   return 0;
 }

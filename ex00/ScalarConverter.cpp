@@ -6,7 +6,7 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 20:46:59 by sakitaha          #+#    #+#             */
-/*   Updated: 2025/01/13 20:05:14 by sakitaha         ###   ########.fr       */
+/*   Updated: 2025/01/14 00:45:54 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,11 @@ void ScalarConverter::convert(const std::string &str) {
     printImpossible();
     return;
   }
-  if (str.length() == 1 && !std::isdigit(str.front())) {
-    printConvertedResult(static_cast<double>(str.front()));
+  if (str.size() == 1 && !std::isdigit(str[0])) {
+    printConvertedResult(static_cast<double>(str[0]));
     return;
   }
   double value = 0;
-
   try {
     size_t pos = 0;
     value = std::stod(str, &pos);
