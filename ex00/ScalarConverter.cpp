@@ -6,11 +6,12 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 20:46:59 by sakitaha          #+#    #+#             */
-/*   Updated: 2025/01/14 01:00:29 by sakitaha         ###   ########.fr       */
+/*   Updated: 2025/01/14 01:04:41 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <stdlib.h>
