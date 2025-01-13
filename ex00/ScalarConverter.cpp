@@ -6,14 +6,16 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 20:46:59 by sakitaha          #+#    #+#             */
-/*   Updated: 2025/01/14 01:04:41 by sakitaha         ###   ########.fr       */
+/*   Updated: 2025/01/14 01:08:39 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cerrno>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <stdlib.h>
 
 ScalarConverter::ScalarConverter() {}
@@ -90,7 +92,7 @@ void ScalarConverter::convert(const std::string &str) {
   char *end;
   double value = strtod(str.c_str(), &end);
   if ((*end != '\0' && (*end != 'f' || *(end + 1) != '\0')) ||
-      end == str.c_str()) {
+      end == str.c_str() || errno != 0) {
     printImpossible();
     return;
   }
