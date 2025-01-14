@@ -6,21 +6,21 @@
 #    By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 16:15:58 by sakitaha          #+#    #+#              #
-#    Updated: 2025/01/13 20:05:18 by sakitaha         ###   ########.fr        #
+#    Updated: 2025/01/14 17:15:40 by sakitaha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 RM       := rm -f
-TARGET   := convert
-SRCS     := $(wildcard *.cpp)
+NAME     := convert
+SRCS     := ScalarConverter.cpp main.cpp
 OBJS     := $(SRCS:.cpp=.o)
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -29,70 +29,70 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(TARGET)
+	$(RM) $(NAME)
 
 re: fclean all
 
-test: $(TARGET)
+test: $(NAME)
 	@echo "== Running Tests  =="
-	./$(TARGET) 0
-	./$(TARGET) nan
-	./$(TARGET) 42.0f
+	./$(NAME) 0
+	./$(NAME) nan
+	./$(NAME) 42.0f
 	@echo "== Tests Completed =="
 
-testc: $(TARGET)
+testc: $(NAME)
 	@echo "== Running char Tests =="
-	./$(TARGET) 'c'
-	./$(TARGET) 'a'
+	./$(NAME) 'c'
+	./$(NAME) 'a'
 	@echo "== Tests Completed =="
 
-testi: $(TARGET)
+testi: $(NAME)
 	@echo "== Running int Tests =="
-	./$(TARGET) 0
-	./$(TARGET) -42
-	./$(TARGET) 42
-	./$(TARGET) -2147483648
-	./$(TARGET) 2147483647
-	./$(TARGET) -2147483649
-	./$(TARGET) 2147483648
+	./$(NAME) 0
+	./$(NAME) -42
+	./$(NAME) 42
+	./$(NAME) -2147483648
+	./$(NAME) 2147483647
+	./$(NAME) -2147483649
+	./$(NAME) 2147483648
 	@echo "== Tests Completed =="
 
-testf: $(TARGET)
+testf: $(NAME)
 	@echo "== Running float Tests =="
-	./$(TARGET) 0.0f
-	./$(TARGET) -4.2f
-	./$(TARGET) 4.2f
-	./$(TARGET) -inff
-	./$(TARGET) +inff
+	./$(NAME) 0.0f
+	./$(NAME) -4.2f
+	./$(NAME) 4.2f
+	./$(NAME) -inff
+	./$(NAME) +inff
 	@echo "== Tests Completed =="
 
-testd: $(TARGET)
+testd: $(NAME)
 	@echo "== Running double Tests =="
-	./$(TARGET) 0.0
-	./$(TARGET) -4.2
-	./$(TARGET) 4.2
-	./$(TARGET) -inf
-	./$(TARGET) +inf
-	./$(TARGET) nan
+	./$(NAME) 0.0
+	./$(NAME) -4.2
+	./$(NAME) 4.2
+	./$(NAME) -inf
+	./$(NAME) +inf
+	./$(NAME) nan
 	@echo "== Tests Completed =="
 
-teste: $(TARGET)
+teste: $(NAME)
 	@echo "== Running double Tests =="
-	./$(TARGET) 1e+300
-	./$(TARGET) -1e-300
-	./$(TARGET) 123abc
-	./$(TARGET) ++42
-	./$(TARGET) 0
-	./$(TARGET) 127
+	./$(NAME) 1e+300
+	./$(NAME) -1e-300
+	./$(NAME) 123abc
+	./$(NAME) ++42
+	./$(NAME) 0
+	./$(NAME) 127
 	@echo "== Tests Completed =="
 
 testall: re test testc testi testf testd
 
 debug: CXXFLAGS += -fsanitize=address -g
-debug: $(TARGET)
-	./$(TARGET)
+debug: $(NAME)
+	./$(NAME)
 
 valgrind: all
-	valgrind --leak-check=full ./$(TARGET)
+	valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all clean fclean re debug leaks valgrind test testc testi testf testd teste testall
