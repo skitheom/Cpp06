@@ -6,14 +6,14 @@
 #    By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 16:15:58 by sakitaha          #+#    #+#              #
-#    Updated: 2025/01/10 04:49:21 by sakitaha         ###   ########.fr        #
+#    Updated: 2025/01/14 14:18:18 by sakitaha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 RM       := rm -f
-TARGET   := program
+TARGET   := identify
 SRCS     := $(wildcard *.cpp)
 OBJS     := $(SRCS:.cpp=.o)
 

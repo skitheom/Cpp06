@@ -6,11 +6,9 @@
 /*   By: sakitaha <sakitaha@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 01:26:17 by sakitaha          #+#    #+#             */
-/*   Updated: 2025/01/14 02:12:54 by sakitaha         ###   ########.fr       */
+/*   Updated: 2025/01/14 03:12:29 by sakitaha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// Serializer const &other
 
 #include "Serializer.hpp"
 
