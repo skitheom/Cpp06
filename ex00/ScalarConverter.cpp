@@ -18,15 +18,35 @@
 #include <limits>
 #include <stdlib.h>
 
-ScalarConverter::ScalarConverter() {}
-
-ScalarConverter::ScalarConverter(ScalarConverter const &other) {
-  *this = other;
+void ScalarConverter::convert(const std::string &str) {
+  if (str.empty()) {
+    printImpossible();
+    return;
+  }
+  if (str.size() == 1 && !std::isdigit(str[0])) {
+    printConvertedResult(static_cast<double>(str[0]));
+    return;
+  }
+  errno = 0;
+  char *end;
+  double value = strtod(str.c_str(), &end);
+  if ((*end != '\0' && (*end != 'f' || *(end + 1) != '\0')) ||
+      end == str.c_str() || errno != 0) {
+    printImpossible();
+    return;
+  }
+  printConvertedResult(value);
 }
+
+ScalarConverter::ScalarConverter() {}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
   (void)other;
   return *this;
+}
+
+ScalarConverter::ScalarConverter(ScalarConverter const &other) {
+  *this = other;
 }
 
 ScalarConverter::~ScalarConverter() {}
@@ -77,24 +97,4 @@ void ScalarConverter::printConvertedResult(double value) {
   toInt(value);
   toFloat(value);
   toDouble(value);
-}
-
-void ScalarConverter::convert(const std::string &str) {
-  if (str.empty()) {
-    printImpossible();
-    return;
-  }
-  if (str.size() == 1 && !std::isdigit(str[0])) {
-    printConvertedResult(static_cast<double>(str[0]));
-    return;
-  }
-  errno = 0;
-  char *end;
-  double value = strtod(str.c_str(), &end);
-  if ((*end != '\0' && (*end != 'f' || *(end + 1) != '\0')) ||
-      end == str.c_str() || errno != 0) {
-    printImpossible();
-    return;
-  }
-  printConvertedResult(value);
 }

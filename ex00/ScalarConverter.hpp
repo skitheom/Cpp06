@@ -16,11 +16,15 @@
 #include <string>
 
 class ScalarConverter {
+public:
+  static void convert(const std::string &str);
+
 private:
   ScalarConverter();
   ScalarConverter(ScalarConverter const &other);
-  ScalarConverter &operator=(ScalarConverter const &other);
   ~ScalarConverter();
+
+  ScalarConverter &operator=(ScalarConverter const &other);
 
   static void toChar(double value);
   static void toInt(double value);
@@ -29,9 +33,6 @@ private:
 
   static void printImpossible();
   static void printConvertedResult(double value);
-
-public:
-  static void convert(const std::string &str);
 };
 
 #endif // SCALAR_CONVERTER_CPP

@@ -77,7 +77,7 @@ testd: $(NAME)
 	@echo "== Tests Completed =="
 
 teste: $(NAME)
-	@echo "== Running double Tests =="
+	@echo "== Running error Tests =="
 	./$(NAME) 1e+300
 	./$(NAME) -1e-300
 	./$(NAME) 123abc
@@ -86,13 +86,13 @@ teste: $(NAME)
 	./$(NAME) 127
 	@echo "== Tests Completed =="
 
-testall: re test testc testi testf testd
+testall: re test testc testi testf testd teste
 
 debug: CXXFLAGS += -fsanitize=address -g
 debug: $(NAME)
-	./$(NAME)
+	./$(NAME) 42
 
 valgrind: all
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full ./$(NAME) 42
 
 .PHONY: all clean fclean re debug leaks valgrind test testc testi testf testd teste testall
