@@ -20,19 +20,19 @@ public:
   static void convert(const std::string &str);
 
 private:
-  ScalarConverter();
-  ScalarConverter(ScalarConverter const &other);
-  ~ScalarConverter();
-
-  ScalarConverter &operator=(ScalarConverter const &other);
+  static void printConvertedResult(double value);
+  static void printImpossible();
 
   static void toChar(double value);
   static void toInt(double value);
   static void toFloat(double value);
   static void toDouble(double value);
 
-  static void printImpossible();
-  static void printConvertedResult(double value);
+  ScalarConverter();
+  ScalarConverter(ScalarConverter const &other);
+  ~ScalarConverter();
+
+  ScalarConverter &operator=(ScalarConverter const &other);
 };
 
 #endif // SCALAR_CONVERTER_CPP

@@ -11,22 +11,26 @@
 # **************************************************************************** #
 
 CXX      := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-RM       := rm -f
-NAME     := convert
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
+
 SRCS     := ScalarConverter.cpp main.cpp
 OBJS     := $(SRCS:.cpp=.o)
+DEPS     := $(OBJS:.o=.d)
+
+NAME     := convert
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
+-include $(DEPS)
+
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -34,20 +38,20 @@ fclean: clean
 re: fclean all
 
 test: $(NAME)
-	@echo "== Running Tests  =="
+	@echo "\n== Running Tests  =="
 	./$(NAME) 0
 	./$(NAME) nan
 	./$(NAME) 42.0f
 	@echo "== Tests Completed =="
 
 testc: $(NAME)
-	@echo "== Running char Tests =="
+	@echo "\n== Running char Tests =="
 	./$(NAME) 'c'
 	./$(NAME) 'a'
 	@echo "== Tests Completed =="
 
 testi: $(NAME)
-	@echo "== Running int Tests =="
+	@echo "\n== Running int Tests =="
 	./$(NAME) 0
 	./$(NAME) -42
 	./$(NAME) 42
@@ -58,7 +62,7 @@ testi: $(NAME)
 	@echo "== Tests Completed =="
 
 testf: $(NAME)
-	@echo "== Running float Tests =="
+	@echo "\n== Running float Tests =="
 	./$(NAME) 0.0f
 	./$(NAME) -4.2f
 	./$(NAME) 4.2f
@@ -67,7 +71,7 @@ testf: $(NAME)
 	@echo "== Tests Completed =="
 
 testd: $(NAME)
-	@echo "== Running double Tests =="
+	@echo "\n== Running double Tests =="
 	./$(NAME) 0.0
 	./$(NAME) -4.2
 	./$(NAME) 4.2
@@ -77,7 +81,7 @@ testd: $(NAME)
 	@echo "== Tests Completed =="
 
 teste: $(NAME)
-	@echo "== Running error Tests =="
+	@echo "\n== Running error Tests =="
 	./$(NAME) 1e+300
 	./$(NAME) -1e-300
 	./$(NAME) 123abc

@@ -38,18 +38,20 @@ void ScalarConverter::convert(const std::string &str) {
   printConvertedResult(value);
 }
 
-ScalarConverter::ScalarConverter() {}
-
-ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
-  (void)other;
-  return *this;
+void ScalarConverter::printConvertedResult(double value) {
+  std::cout << std::fixed << std::setprecision(1);
+  toChar(value);
+  toInt(value);
+  toFloat(value);
+  toDouble(value);
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter const &other) {
-  *this = other;
+void ScalarConverter::printImpossible() {
+  std::cout << "char: impossible\n";
+  std::cout << "int: impossible\n";
+  std::cout << "float: impossible\n";
+  std::cout << "double: impossible\n";
 }
-
-ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::toChar(double value) {
   if (std::isnan(value) || std::isinf(value) ||
@@ -84,17 +86,13 @@ void ScalarConverter::toDouble(double value) {
   std::cout << "double: " << value << std::endl;
 }
 
-void ScalarConverter::printImpossible() {
-  std::cout << "char: impossible\n";
-  std::cout << "int: impossible\n";
-  std::cout << "float: impossible\n";
-  std::cout << "double: impossible\n";
-}
+ScalarConverter::ScalarConverter() {}
 
-void ScalarConverter::printConvertedResult(double value) {
-  std::cout << std::fixed << std::setprecision(1);
-  toChar(value);
-  toInt(value);
-  toFloat(value);
-  toDouble(value);
+ScalarConverter::ScalarConverter(ScalarConverter const &other) { (void)other; }
+
+ScalarConverter::~ScalarConverter() {}
+
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other) {
+  (void)other;
+  return *this;
 }

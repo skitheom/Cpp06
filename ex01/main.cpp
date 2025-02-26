@@ -17,7 +17,7 @@
 int main(void) {
 
   Data sample;
-  sample.no = 101;
+  sample.no = 11;
   sample.name = "Pham";
 
   uintptr_t raw = Serializer::serialize(&sample);
@@ -25,8 +25,8 @@ int main(void) {
 
   std::cout << "Before Serialization\n\tNo: " << sample.no
             << "\n\tName: " << sample.name << std::endl;
-  std::cout << "uintptr_t raw = " << raw << std::endl;
-  std::cout << "After Serialization\n\tNo: " << result->no
+  std::cout << "\nuintptr_t raw = " << raw << std::endl;
+  std::cout << "\nAfter Serialization\n\tNo: " << result->no
             << "\n\tName: " << result->name << std::endl;
   return 0;
 }

@@ -11,22 +11,26 @@
 # **************************************************************************** #
 
 CXX      := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
-RM       := rm -f
-NAME     := identify
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -MMD -MP
+
 SRCS     := Base.cpp main.cpp util.cpp
 OBJS     := $(SRCS:.cpp=.o)
+DEPS     := $(OBJS:.o=.d)
+
+NAME     := identify
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
+-include $(DEPS)
+
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)

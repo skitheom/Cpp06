@@ -18,20 +18,20 @@
 #include <iostream>
 
 int main(void) {
-  static const int kObjSize = 5;
-  Base *obj[kObjSize];
-  for (size_t i = 0; i < kObjSize; i++) {
-    obj[i] = generate();
-    if (!obj[i]) {
+  const int kObjSize = 7;
+  Base *obj;
+  for (size_t i = 0; i < kObjSize; ++i) {
+    obj = generate();
+    if (!obj) {
       std::cout << "Failed to generate A/B/C object." << std::endl;
-      continue;
+      return 1;
     }
-    std::cout << "--- obj[" << i << "] ---" << std::endl;
+    std::cout << "\n--- object No." << i << " ---" << std::endl;
     std::cout << "Identify as ptr: ";
-    identify(obj[i]);
+    identify(obj);
     std::cout << "Identify as ref: ";
-    identify(*obj[i]);
-    delete obj[i];
+    identify(*obj);
+    delete obj;
   }
   return 0;
 }
